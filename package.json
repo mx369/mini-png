@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/napi-rs/package-template.git"
+    "url": "git+https://github.com/mx369/mini-png.git"
   },
   "license": "MIT",
   "browser": "browser.js",
