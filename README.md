@@ -85,3 +85,5 @@ git push
 GitHub actions will do the rest job for you.
 
 > WARN: Don't run `npm publish` manually.
+npm version patch
+git push --follow-tags
