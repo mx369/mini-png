@@ -2,7 +2,7 @@
 [package]
 authors = ["LongYinan <lynweklm@gmail.com>"]
 edition = "2021"
-name = "mini_png"
+name = "otth_mini_png"
 version = "0.1.0"
 
 [lib]
@@ -11,8 +11,16 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = "3.0.0"
 napi-derive = "3.0.0"
-oxipng = { version = "10.1", default-features = false, features = ["parallel", "zopfli"] }
-image = { version = "0.25.9", default-features = false, features = ["png"] }
+
+[dependencies.oxipng]
+version = "10.1"
+default-features = false
+features = ["parallel","zopfli"]
+
+[dependencies.image]
+version = "0.25.9"
+default-features = false
+features = ["png"]
 
 [build-dependencies]
 napi-build = "2"

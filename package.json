@@ -23,7 +23,7 @@
     "browser.js"
   ],
   "napi": {
-    "binaryName": "mini-png",
+    "binaryName": "@otth/mini-png",
     "targets": [
       "x86_64-pc-windows-msvc",
       "x86_64-apple-darwin",
