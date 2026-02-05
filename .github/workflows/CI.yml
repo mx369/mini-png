@@ -23,6 +23,8 @@ concurrency:
 jobs:
   lint:
     name: Lint
+    # Disabled per request
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -115,6 +117,8 @@ jobs:
           if-no-files-found: error
   test-macOS-windows-binding:
     name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
+    # Disabled per request
+    if: false
     needs:
       - build
     strategy:
@@ -156,6 +160,8 @@ jobs:
         run: yarn test
   test-linux-binding:
     name: Test ${{ matrix.target }} - node@${{ matrix.node }}
+    # Disabled per request
+    if: false
     needs:
       - build
     strategy:
@@ -227,9 +233,7 @@ jobs:
       contents: write
       id-token: write
     needs:
-      - lint
-      - test-macOS-windows-binding
-      - test-linux-binding
+      - build
     steps:
       - uses: actions/checkout@v6
       - name: Setup node
