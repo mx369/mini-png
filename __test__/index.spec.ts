@@ -3,7 +3,7 @@ import test from 'ava'
 import { compressPng } from '../index'
 
 const PNG_BASE64 =
-  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2WQAAAAASUVORK5CYII='
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII='
 
 test('compressPng returns a PNG buffer', async (t) => {
   const input = Buffer.from(PNG_BASE64, 'base64')
