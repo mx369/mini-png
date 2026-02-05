@@ -2,7 +2,7 @@
 [package]
 authors = ["LongYinan <lynweklm@gmail.com>"]
 edition = "2021"
-name = "otth_mini_png"
+name = "mini_png"
 version = "0.1.0"
 
 [lib]
