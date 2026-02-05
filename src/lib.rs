@@ -70,12 +70,8 @@ impl Task for CompressTask {
     let mut data = std::mem::take(&mut self.data);
 
     if let Some(width) = self.width {
-      let img = image::load_from_memory(&data).map_err(|e| {
-        Error::new(
-          Status::InvalidArg,
-          format!("Invalid PNG buffer: {e}"),
-        )
-      })?;
+      let img = image::load_from_memory(&data)
+        .map_err(|e| Error::new(Status::InvalidArg, format!("Invalid PNG buffer: {e}")))?;
 
       let (orig_w, orig_h) = img.dimensions();
       if width < orig_w {
@@ -88,7 +84,10 @@ impl Task for CompressTask {
         let resized = img.resize_exact(width, new_h, image::imageops::FilterType::Lanczos3);
         let mut resized_bytes = Vec::new();
         resized
-          .write_to(&mut Cursor::new(&mut resized_bytes), image::ImageFormat::Png)
+          .write_to(
+            &mut Cursor::new(&mut resized_bytes),
+            image::ImageFormat::Png,
+          )
           .map_err(|e| {
             Error::new(
               Status::GenericFailure,
@@ -108,9 +107,8 @@ impl Task for CompressTask {
       opts.strip = strip.clone();
     }
 
-    let optimized = oxipng::optimize_from_memory(&data, &opts).map_err(|e| {
-      Error::new(Status::GenericFailure, format!("oxipng failed: {e}"))
-    })?;
+    let optimized = oxipng::optimize_from_memory(&data, &opts)
+      .map_err(|e| Error::new(Status::GenericFailure, format!("oxipng failed: {e}")))?;
 
     Ok(optimized)
   }
@@ -133,6 +131,9 @@ fn parse_strip(value: &str) -> Result<StripChunks> {
 }
 
 #[napi]
-pub fn compress_png(buffer: Buffer, options: Option<CompressOptions>) -> Result<AsyncTask<CompressTask>> {
+pub fn compress_png(
+  buffer: Buffer,
+  options: Option<CompressOptions>,
+) -> Result<AsyncTask<CompressTask>> {
   Ok(AsyncTask::new(CompressTask::new(buffer, options)?))
 }
