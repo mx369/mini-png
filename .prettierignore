@@ -1,8 +1,9 @@
 target
 .yarn
 index.js
-package-template.wasi-browser.js
-package-template.wasi.cjs
+mini-png.wasi-browser.js
+mini-png.wasi.cjs
+mini-png.*.wasm
 wasi-worker-browser.mjs
 wasi-worker.mjs
 .yarnrc.yml
